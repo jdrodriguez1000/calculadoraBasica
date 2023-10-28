@@ -58,11 +58,23 @@ class Math_Functions:
     
     
     def to_power(self, number1, number2):
-        resultpower = pow(number1, number2)
-        return resultpower
+        try:
+            number1 = float(number1)
+            number2 = float(number2)
+            resultpower = pow(number1, number2)
+            return resultpower
+        except ValueError as err:
+            print(err)
+            raise
     
     
     def to_squareroot(self, number1):
-        resultsqureroot = sqrt(number1)
+        try:
+            number1 = float(number1)
+            resultsqureroot = sqrt(number1)
+            return resultsqureroot
+        except ValueError as err:
+            print(err)
+            raise
         
 #function_math = Math_Functions()

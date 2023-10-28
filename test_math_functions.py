@@ -212,3 +212,104 @@ def test_to_divide_multiple(function_tests, input_1, input_2, output_1):
 def test_to_divide_divide_no_numeric(function_tests, input_1, input_2):
     with pytest.raises(ValueError):
         function_tests.to_divide(function_tests, input_1, input_2)
+
+
+
+def test_to_power(function_tests):
+    number1 = 2
+    number2 = 3
+    #function_test = Math_Functions()
+    assert function_tests.to_power(function_tests, number1, number2) == 8    
+
+
+
+def test_to_power_no_numeric_base(function_tests):
+    number1 = 'r'
+    number2 = 2
+    #function_test = Math_Functions()
+    with pytest.raises(ValueError):
+        function_tests.to_power(function_tests, number1, number2)   
+
+
+
+def test_to_power_no_numeric_power(function_tests):
+    number1 = 2
+    number2 = 'r'
+    #function_test = Math_Functions()
+    with pytest.raises(ValueError):
+        function_tests.to_power(function_tests, number1, number2)
+
+
+
+def test_to_power_base_zero_power_negative(function_tests):
+    number1 = 0
+    number2 = -4
+    #function_test = Math_Functions()
+    with pytest.raises(ValueError):
+        function_tests.to_power(function_tests, number1, number2)
+        
+
+@pytest.mark.parametrize(
+    ['input_1', 'input_2', 'output_1'],
+    [
+        (2, 2, 4),
+        (-2, 2, 4),
+        (4, -2, 0.0625),
+        (-4, -2, 0.0625),
+        (8, 0, 1),
+        (-8, 0, 1),
+        (0, 5, 0)
+    ]  
+)        
+def test_to_power_numeric_multiple(function_tests, input_1, input_2, output_1):
+    assert function_tests.to_power(function_tests, input_1, input_2) == output_1
+    
+
+
+@pytest.mark.parametrize(
+    ['input_1', 'input_2'],
+    [
+        ('q', 2),
+        (5, 'a'),
+        ("", 2),
+        (3, "")        
+    ]
+)
+def test_to_power_multiple_no_numeric(function_tests, input_1, input_2):
+    with pytest.raises(ValueError):
+        function_tests.to_power(function_tests, input_1, input_2)
+
+
+
+def test_to_sqrt_numeric(function_tests):
+    number1 = 4
+    assert function_tests.to_squareroot(function_tests, number1) == 2
+    
+    
+
+def test_to_sqrt_no_numeric(function_tests):
+    number1 = 'f'
+    with pytest.raises(ValueError):
+        function_tests.to_squareroot(function_tests, number1)
+        
+
+
+def test_to_sqrt_negtive(function_tests):
+    number1 = -2
+    with pytest.raises(ValueError):
+        function_tests.to_squareroot(function_tests, number1)
+        
+        
+        
+@pytest.mark.parametrize(
+    ['input_1', 'output_1'],
+    [
+        (4, 2),
+        (9, 3),
+        (0, 0),
+        (1, 1)
+    ]
+)
+def test_to_sqrt_multiple_numeric(function_tests, input_1, output_1):
+    assert function_tests.to_squareroot(function_tests, input_1) == output_1
+    
